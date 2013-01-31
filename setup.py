@@ -19,7 +19,7 @@ setup(
     url = 'https://github.com/luztak/pyguments',
     packages = find_packages();
     description = 'Pyguments is a Python module for parsing command line.',
-    long_description = open('README.rst').read(),
+    long_description = open('README.md").read()
     install_requires = [],
     license = 'MIT',
     classifiers = [
