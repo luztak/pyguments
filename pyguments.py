@@ -13,8 +13,7 @@ class Pyguments(object):
         self._parse_sys_args()
     
     def add(self, command, cmdtype="normal", function=None, message=None): 
-        if not function:    function = getattr(__name__, command)
-        #this getattr is wrong.needs solution.
+        if not function:    function = globals().get(command)
         self.commands.update({'command':command, 'cmdtype':cmdtype, 'function':function, 'message':message})
     
     def remove(self, command): 
