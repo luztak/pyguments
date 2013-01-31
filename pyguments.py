@@ -22,7 +22,7 @@ class Pyguments(object):
     
     def update(self, command, cmdtype="normal", function=None, message=None): 
         self.add(command, cmdtype=cmdtype, function=function, message=message)
-    
+
     def getarg(self, command):
         cmdtype = self.commands[command]["cmdtype"]
         if cmdtype == "normal" or cmdtype == "hyphen" or cmdtype == "long": #python a.py test/-t/--time-max
@@ -34,3 +34,7 @@ class Pyguments(object):
         elif cmdtype == "hyphenspace" or cmdtype == "longspace": #python a.py -t 60/--time-max 60
             arg = self.sys_args[self.sys_args.index(command) + 1]
         return arg
+    
+    
+    def __getitem__(self, command):
+        return self.commands[command]
