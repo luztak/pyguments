@@ -13,15 +13,15 @@ class Pyguments(object):
         self._parse_sys_args()
     
     def add(self, command, cmdtype="normal", function=None, message=None): 
-        if not function:    getattr(__name__, command)
+        if not function:    function = getattr(__name__, command)
         #this getattr is wrong.needs solution.
-        self.commands.update({'command':command, 'function':function, 'message':message})
+        self.commands.update({'command':command, 'cmdtype':cmdtype, 'function':function, 'message':message})
     
     def remove(self, command): 
         del self.commands[command]
     
     def update(self, command, cmdtype="normal", function=None, message=None): 
-        self.add(command, cmadtype=cmdtype, function=function, message=message)
+        self.add(command, cmdtype=cmdtype, function=function, message=message)
     
     def getarg(self, command):
         cmdtype = self.commands[command]["cmdtype"]
