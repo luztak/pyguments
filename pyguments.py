@@ -10,17 +10,17 @@ class Pyguments(object):
         self.commands = {}
         self.used_commands = []
         
-        self._parse_sys_args()
+        self.parsed = self._parse(self.args)
     
     def add(self, command, cmdtype="normal", function=None, message=None): 
-        if not function:    function = globals().get(command)
-        self.commands.update({'command':command, 'cmdtype':cmdtype, 'function':function, 'message':message})
+        self.update(command=command, cmdtype=cmdtype, function=function, message=message)
     
     def remove(self, command): 
         del self.commands[command]
     
     def update(self, command, cmdtype="normal", function=None, message=None): 
-        self.add(command, cmdtype=cmdtype, function=function, message=message)
+        if not function:    function = locals().get(command)
+        self.commands.update({'command':command, 'cmdtype':cmdtype, 'function':function, 'message':message})
 
     def getarg(self, command):
         cmdtype = self.commands[command]["cmdtype"]
@@ -35,5 +35,17 @@ class Pyguments(object):
         return arg
     
     
+    def _parse(self, args): 
+        parsed = []
+        for arg in args: 
+            pass
+    
+    
     def __getitem__(self, command):
         return self.commands[command]
+    
+    def __setitem__(self, command, args):
+        self.commands[command] = args
+    
+    def __delitem__(self, command):
+        del self.commands[command]
